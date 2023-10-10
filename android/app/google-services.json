@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "293509809081",
+    "project_id": "ageu-fab49",
+    "storage_bucket": "ageu-fab49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293509809081:android:1c5d7b759b04e8ab982c68",
+        "android_client_info": {
+          "package_name": "br.com.ageu.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "293509809081-ap8nl22ntmq8cluut68l0p7n1rtmaacg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.ageu.app",
+            "certificate_hash": "960d5fb725f4f1617390d07c15e52d62d8746b16"
+          }
+        },
+        {
+          "client_id": "293509809081-k8qjoqnkoigmugkepncaio4qconh3f1j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqzaeb7upSH9_XGB6UvSwPBpOuAruoiNg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "293509809081-k8qjoqnkoigmugkepncaio4qconh3f1j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

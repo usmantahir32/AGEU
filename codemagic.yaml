@@ -1,0 +1,49 @@
+workflows:
+  android-workflow:
+    name: Android Workflow
+    max_build_duration: 20
+    instance_type: mac_mini_m1
+    environment:
+      android_signing:
+        - keystore_ageu
+      groups:
+        - google_play
+      vars:
+        APP_NAME: Ague App
+        PACKAGE_NAME: br.com.ageu.app
+        VERSION_NAME: 1.0
+        GOOGLE_PLAY_TRACK: internal
+      flutter: stable
+    cache:
+      cache_paths: []
+    scripts:
+    - name: Set up keystore.properties
+      script: | 
+        echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
+    - name: Get Flutter packages
+      script: | 
+        flutter packages pub get
+    - name: Build AAB with Flutter
+      script: |
+        # flutter build appbundle --debug
+        BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))      
+        flutter build appbundle --release \
+          --build-name=$VERSION_NAME.$BUILD_NUMBER \
+          --build-number=$BUILD_NUMBER
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - flutter_drive.log
+      
+    publishing:
+      email:
+        recipients:
+          - thomas.j.santos@gmail.com
+        notify:
+          success: true
+          failure: false
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: $GOOGLE_PLAY_TRACK
+        in_app_update_priority: 0
+        submit_as_draft: true
